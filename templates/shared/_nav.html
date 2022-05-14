@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">Home</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link active">Tâches</a>
+            </div>
+            {% if 'user_id' in request.session %}
+            <div class="navbar-nav ms-auto">
+                <a href="{% url 'logout' %}" class="me-lg-2  btn btn-danger">Deconnexion</a>
+                {% comment %} <a href="{% url 'update' %}" class=" btn btn-primary">Mon profile</a> {% endcomment %}
+            </div>{% else %}
+            <div class="navbar-nav ms-auto">
+                <a href="{% url 'signin' %}" class="me-lg-2  btn btn-success">Connexion</a>
+                <a href="{% url 'signup' %}" class=" btn btn-primary">Inscription</a>
+            </div>
+            {% endif %}
+           
+        </div>
+    </div>
+</nav>
