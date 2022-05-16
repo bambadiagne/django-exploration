@@ -10,6 +10,7 @@
             </div>
             {% if 'user_id' in request.session %}
             <div class="navbar-nav ms-auto">
+                <a href="{% url 'update' request.session.user_id  %}" class="me-lg-2  btn btn-primary" >Mon profile</a>
                 <a href="{% url 'logout' %}" class="me-lg-2  btn btn-danger">Deconnexion</a>
                 {% comment %} <a href="{% url 'update' %}" class=" btn btn-primary">Mon profile</a> {% endcomment %}
             </div>{% else %}
