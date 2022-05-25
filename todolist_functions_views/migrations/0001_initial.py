@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SimpleUser',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
                 ('password', models.CharField(max_length=70)),
             ],
@@ -24,11 +25,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Todo',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('task', models.CharField(max_length=40)),
-                ('status', models.CharField(choices=[('TO_DO', 'TO_DO'), ('IN_PROGRESS', 'IN_PROGRESS'), ('FINISHED', 'FINISHED')], default='TO_DO', max_length=30)),
-                ('created_at', models.DateTimeField(blank=True, default=datetime.datetime.now)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='todolist_functions_views.simpleuser')),
+                ('status', models.CharField(choices=[('TO_DO', 'TO_DO'), ('IN_PROGRESS', 'IN_PROGRESS'), (
+                    'FINISHED', 'FINISHED')], default='TO_DO', max_length=30)),
+                ('created_at', models.DateTimeField(
+                    blank=True, default=datetime.datetime.now)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='todolist_functions_views.simpleuser')),
             ],
         ),
     ]

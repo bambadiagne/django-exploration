@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('users/', include('users.urls')),
-    path("",views.home, name=""),
+    path('tasks/', include('todolist_functions_views.urls')),
+    path("", views.home, name=""),
     path('admin/', admin.site.urls),
 ]

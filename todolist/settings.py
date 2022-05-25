@@ -119,7 +119,7 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    
+
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -129,17 +129,16 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')           
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-   
+    os.path.join(BASE_DIR, 'static'),
+)
 
-    # Static files settings
+# Static files settings
 
-    # Extra places for collectstatic to find static files.
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
+# Extra places for collectstatic to find static files.
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
