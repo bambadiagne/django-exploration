@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/back.css'%}" />
+
+{% endblock %} {% block content %}
+<h1 class="text-center text-white">Liste des taches</h1>
+<div class="container-xl mt-5 bg-white w-100">
+  <div class="row">
+    <div class="col">
+      <h3>
+        A faire <span class=""><i class="fa-solid fa-check"></i></span>
+      </h3>
+      <div class="d-flex flex-column">
+        <div class="container bg-light rounded  mb-2">
+          <div class="float-start"><span class="badge bg-warning">Important</span></div>
+          <br>
+          <div>
+            <h5 class="text-center">Jouer à FIFA</h5>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h3>
+        A faire <span class=""><i class="fa-solid fa-check"></i></span>
+      </h3>
+      <div class="d-flex flex-column">
+        <div class="container bg-light rounded">
+          <div style="left: 0px;" class="float-start"><span class="badge bg-warning">Important</span></div>
+          <br>
+          <div>
+            <h5 class="text-center">Jouer à FIFA</h5>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h3>
+        A faire <span class=""><i class="fa-solid fa-check"></i></span>
+      </h3>
+      <div class="d-flex flex-column">
+        <div class="container bg-light rounded">
+          <div style="left: 0px;" class="float-start"><span class="badge bg-warning">Important</span></div>
+          <br>
+          <div>
+            <h5 class="text-center">Jouer à FIFA</h5>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock content %}
