@@ -3,87 +3,77 @@
 
 {% endblock %} {% block content %}
 <h1 class="text-center text-white">Liste des taches</h1>
-<div class="container-fluid mt-5 bg-white w-100">
-  <div  style="overflow-y: auto;" class="row  flex-nowrap">
-    <div class="col col-lg-4  border w-100 m-2 border-success">
-      <h3>
-        A faire <span class=""><i class="fa-solid fa-check"></i></span>
-      </h3>
-      <div class="d-flex flex-column">
-        <div class="container bg-light rounded mx-1 p-0 mb-2">
-          <div class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
+<div class="container-fluid mt-5 bg-white">
+  <div class="row flex-column flex-sm-row flex-nowrap">
+    {% for key, value in all_todos.items %}
 
-        </div>
-        <div class="container bg-light rounded mx-1 p-0 mb-2">
-          <div class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
+    <div
+      style="overflow-y: scroll"
+      class="col-12 col-md-4 col-lg-4 border ml-0 mr-2 border-success"
+    >
+      <h3>{{key}}<span class=""></span></h3>
+      {% for todo in value %}
 
-        </div>
-        <div class="container bg-light rounded mx-1 p-0 mb-2">
-          <div class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
+      <div style="overflow-y: auto" class="d-flex flex-column flex-nowrap">
+        <div id="{{todo.id}}" class="bg-light rounded mx-1 p-0 mb-2">
+          <div class="float-start"><span class="badge bg-warning"></span></div>
+          <br />
           <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
+            <h5 class="text-center">
+              {{todo.task}}&nbsp;<button
+                onclick="goToTask('{{todo.id}}')"
+                class="btn btn-primary"
+              >
+                <i class="fa fa-pen"></i>
+              </button>
+              &nbsp;
+              <button
+                onclick="deleteTask('{{todo.id}}')"
+                class="btn btn-danger"
+              >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </h5>
           </div>
-
-        </div>
-        <div class="container bg-light rounded mx-1 p-0 mb-2">
-          <div class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
-
-        </div>
-        <div class="container bg-light rounded mx-1 p-0 mb-2">
-          <div class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
-
         </div>
       </div>
+      {% endfor %}
     </div>
-    <div class="col col-lg-4  border w-100 m-2 border-success">
-      <h3>
-        A faire <span class=""><i class="fa-solid fa-check"></i></span>
-      </h3>
-      <div class="d-flex flex-column">
-        <div class="container bg-light rounded">
-          <div style="left: 0px;" class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
 
-        </div>
-      </div>
-    </div>
-    <div class="col col-lg-4  border w-100 m-2 border-success">
-      <h3>
-        A faire <span class=""><i class="fa-solid fa-check"></i></span>
-      </h3>
-      <div class="d-flex flex-column">
-        <div class="container bg-light rounded">
-          <div style="left: 0px;" class="float-start"><span class="badge bg-warning">Important</span></div>
-          <br>
-          <div>
-            <h5 class="text-center">Jouer à FIFA</h5>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
-  
 </div>
 
-{% endblock content %}
+{% endblock content %} {% block js %}
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"
+  integrity="sha512-LUKzDoJKOLqnxGWWIBM4lzRBlxcva2ZTztO8bTcWPmDSpkErWx0bSP4pdsjNH8kiHAUPaT06UXcb+vOEZH+HpQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script>
+  function goToTask(id) {
+    window.location = "/tasks/update/" + id;
+  }
+  function deleteTask(id) {
+    var csrftoken = "{{ csrf_token }}";
+    if (confirm("Voulez-vous supprimer cette tache")) {
+      axios
+        .delete("/tasks/delete/" + id, {
+          headers: { "X-CSRFToken": csrftoken },
+        })
+        .then(function (response) {
+          const data = response.data;
+          if (data.status === "SUCCESSFUL") {
+            setTimeout(() => {
+              document.getElementById(id).remove();
+              alert("Tache supprimée");
+            }, 1500);
+          } else {
+            alert("Erreur : " + data.message);
+          }
+        });
+    }
+  }
+</script>
+{% endblock %}
